@@ -1,0 +1,9 @@
+/writable/*
+/vendor/*
+/.env
+composer.lock
+phpunit.xml
+phpunit.xml.dist
+.idea/
+.vscode/
+.DS_Store
