@@ -1,35 +1,39 @@
-
-{extends file='themes/main.tpl'}
-
-{block output}
-
 <h1>Liste des produits</h1>
 
 <form method="get" action="">
-    <label>Catégorie : <input type="text" name="category" value="{$filters.category|default:''}"></label>
-    <label>Prix minimum : <input type="number" name="min_price" value="{$filters.min_price|default:''}"></label>
+    <label>Catégorie : 
+        <input type="text" name="category" value="<?= $filters['category'] ?? '' ?>">
+    </label>
+    <label>Prix minimum : 
+        <input type="number" name="min_price" value="<?= $filters['min_price'] ?? '' ?>">
+    </label>
     <button type="submit">Filtrer</button>
 </form>
 
-{if isset($errors) && $errors|@count > 0}
+<?php if (!empty($errors)): ?>
     <ul>
-        {foreach from=$errors item=err}<li>{$err}</li>{/foreach}
+        <?php foreach ($errors as $err): ?>
+            <li><?= esc($err) ?></li>
+        <?php endforeach; ?>
     </ul>
-{/if}
+<?php endif; ?>
 
-{if isset($products) && $products|@count > 0}
+<?php if (!empty($products)): ?>
     <ul>
-        {foreach from=$products item=p}
-            <li>{$p.name} - {$p.category} - {$p.price}</li>
-        {/foreach}
+        <?php foreach ($products as $p): ?>
+            <li>
+                <?= esc($p['name']) ?> - 
+                <?= esc($p['category']) ?> - 
+                <?= esc($p['price']) ?>
+            </li>
+        <?php endforeach; ?>
     </ul>
-{else}
+<?php else: ?>
     <p>Aucun produit trouvé</p>
-{/if}
+<?php endif; ?>
 
-<p class="text-center text-muted">© 2025 - Version principale</p>
-<p class="text-center text-muted">© 2025 - Mon Filtre</p>
-<p class="text-center text-muted">© 2025 - Mon Filtre Produit - Modif Test</p>
-
-
-{/block}
+<footer>
+    <p class="text-center text-muted">© 2025 - Version principale</p>
+    <p class="text-center text-muted">© 2025 - Mon Filtre</p>
+    <p class="text-center text-muted">© 2025 - Mon Filtre Produit - Modif Test</p>
+</footer>
