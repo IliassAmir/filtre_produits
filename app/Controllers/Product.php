@@ -22,7 +22,7 @@ $this->validation = \Config\Services::validation();
      public function index(){
 
      // hadi hia la branche dev
-      
+      // deuxieme modif f dev
        $request = service('request');
 
        $filters = [
